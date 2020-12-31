@@ -33,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
     //public void showNotification(View v) {
     public void showNotification(int i) {
-        Random random = new Random();
-        int randomNumber = random.nextInt(100) + 65;
+
         RemoteViews collapsedView = new RemoteViews(getPackageName(),
                 R.layout.notification_collasped);
         RemoteViews expandedView = new RemoteViews(getPackageName(),
@@ -59,12 +58,12 @@ public class MainActivity extends AppCompatActivity {
         collapsedView.setTextViewText(R.id.text_view_collapsed_2, "Hello World...!"+ i);
         collapsedView.setTextViewText(R.id.text_view_collapsed_3, "Hello World something went worng...!"+i+"Y:"+ i);
         collapsedView.setTextViewText(R.id.text_view_collapsed_4, "Hello World something went worng bla bla bla bla ...!"+i);
-//        expandedView.setImageViewResource(R.id.image_view_expanded, R.drawable.ic_android);
-//        expandedView.setOnClickPendingIntent(R.id.image_view_expanded, clickPendingIntent);
+        expandedView.setImageViewResource(R.id.image_view_expanded, R.drawable.ic_android);
+        expandedView.setOnClickPendingIntent(R.id.image_view_expanded, clickPendingIntent);
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_android)
                 .setCustomContentView(collapsedView)
-//                .setCustomBigContentView(expandedView)
+                .setCustomBigContentView(expandedView)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
                 .build();
         notificationManager.notify(1, notification);
